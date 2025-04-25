@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Solo Qualifying | Tournament Hub</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .sortable {
+      cursor: pointer;
+      user-select: none;
+    }
+    .arrow {
+      font-size: 0.8em;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">Tournament Hub</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="solo.html">Solo Qualifying</a></li>
+          <li class="nav-item"><a class="nav-link" href="pairs.html">Pairs</a></li>
+          <li class="nav-item"><a class="nav-link" href="duo.html">Duo Qualifying</a></li>
+          <li class="nav-item"><a class="nav-link" href="bracket.html">Bracket</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="bg-primary text-white text-center py-5">
+    <div class="container">
+      <h1>Solo Qualifying</h1>
+    </div>
+  </header>
+
+  <main class="container my-5">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Current Solo Leaderboard</h5>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped" id="scoreTable">
+            <thead class="table-dark">
+              <tr>
+                <th>Player</th>
+                <th class="sortable" onclick="sortTable()">
+                  Score <span class="arrow" id="sortArrow">▲</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Justin Newlin</td><td>1</td></tr>
+              <tr><td>Kaden Klapprodt</td><td>2</td></tr>
+              <tr><td>Ricky Godinez</td><td>3</td></tr>
+              <tr><td>Isaac Black</td><td>4</td></tr>
+              <tr><td>Lucian Barraza</td><td>5</td></tr>
+              <tr><td>Aidan Lange</td><td>6</td></tr>
+              <tr><td>Matthew Clayton</td><td>7</td></tr>
+              <tr><td>Brodie Farrell</td><td>8</td></tr>
+              <tr><td>Jacob Barraza</td><td>9</td></tr>
+              <tr><td>Reston Lottes</td><td>10</td></tr>
+              <tr><td>Tyler Vilet</td><td>11</td></tr>
+              <tr><td>Rylan Lottes</td><td>12</td></tr>
+              <tr><td>Sean Reynolds</td><td>13</td></tr>
+              <tr><td>Hudson Ikens</td><td>14</td></tr>
+              <tr><td>Jonah Keck</td><td>15</td></tr>
+              <tr><td>Aidan Ibarra</td><td>16</td></tr>
+              <tr><td>Kevin Sullivan</td><td>17</td></tr>
+              <tr><td>Jayden Wilson</td><td>18</td></tr>
+              <tr><td>Tyler Westberg</td><td>19</td></tr>
+              <tr><td>Eric Rosenow</td><td>20</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bg-dark text-white text-center py-3">
+    <div class="container">
+      <small>&copy; 2025 Tournament Hub. All rights reserved.</small>
+    </div>
+  </footer>
+
+  <script>
+    let ascending = true;
+    function sortTable() {
+      const table = document.getElementById("scoreTable");
+      const rows = Array.from(table.rows).slice(1); // skip header
+      const sorted = rows.sort((a, b) => {
+        const aScore = parseInt(a.cells[1].innerText);
+        const bScore = parseInt(b.cells[1].innerText);
+        return ascending ? aScore - bScore : bScore - aScore;
+      });
+      const tbody = table.tBodies[0];
+      sorted.forEach(row => tbody.appendChild(row));
+      ascending = !ascending;
+
+      // Toggle arrow direction
+      document.getElementById("sortArrow").textContent = ascending ? "▲" : "▼";
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
