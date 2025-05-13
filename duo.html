@@ -54,19 +54,21 @@
                 <th>Team Name</th>
                 <th>Player 1</th>
                 <th>Player 2</th>
-                <th class="sortable" onclick="sortTable()">Score <span class="arrow" id="sortArrow">▲</span></th>
+                <th class="sortable" onclick="sortTable()">
+                  Score <span class="arrow" id="sortArrow">▲</span>
+                </th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>Foreplay</td><td>Rylan Lottes</td><td>Hudson Ikens</td><td>0</td></tr>
-              <tr><td>Ayo Dosunmu Baller's</td><td>Tyler Westberg</td><td>Sean Reynolds</td><td>0</td></tr>
-              <tr><td>Yin Yang</td><td>Kaden Klapprodt</td><td>Jayden Wilson</td><td>0</td></tr>
-              <tr><td>Team 4</td><td>Jonah Keck</td><td>Jacob Barraza</td><td>0</td></tr>
-              <tr><td>Team 5</td><td>Aidan Lange</td><td>Kevin Sullivan</td><td>0</td></tr>
-              <tr><td>Los Hermano's</td><td>Eric Rosenow</td><td>Aidan Ibarra</td><td>0</td></tr>
-              <tr><td>RustyTires4412</td><td>Tyler Vilet</td><td>Reston Lottes</td><td>0</td></tr>
-              <tr><td>Team 8</td><td>Justin Newlin</td><td>Lucian Barraza</td><td>0</td></tr>
-              <tr><td>Team 9</td><td>Matthew Clayton</td><td>Ricky Godinez</td><td>0</td></tr>
+              <tr><td>Foreplay</td><td>Rylan Lottes</td><td>Hudson Ikens</td><td>1</td></tr>
+              <tr><td>Ayo Dosunmu Baller's</td><td>Tyler Westberg</td><td>Sean Reynolds</td><td>2</td></tr>
+              <tr><td>Yin Yang</td><td>Kaden Klapprodt</td><td>Jayden Wilson</td><td>3</td></tr>
+              <tr><td>Team 4</td><td>Jonah Keck</td><td>Jacob Barraza</td><td>4</td></tr>
+              <tr><td>Team 5</td><td>Aidan Lange</td><td>Kevin Sullivan</td><td>5</td></tr>
+              <tr><td>Los Hermano's</td><td>Eric Rosenow</td><td>Aidan Ibarra</td><td>6</td></tr>
+              <tr><td>RustyTires4412</td><td>Tyler Vilet</td><td>Reston Lottes</td><td>7</td></tr>
+              <tr><td>The Freshman Killas</td><td>Justin Newlin</td><td>Lucian Barraza</td><td>8</td></tr>
+              <tr><td>Team 9</td><td>Matthew Clayton</td><td>Ricky Godinez</td><td>9</td></tr>
             </tbody>
           </table>
         </div>
@@ -82,7 +84,8 @@
 
   <script>
     let ascending = true;
-    function sortTable() {
+
+    function sortTable(toggle = true) {
       const table = document.getElementById("duoTable");
       const rows = Array.from(table.rows).slice(1); // skip header
       const sorted = rows.sort((a, b) => {
@@ -92,11 +95,16 @@
       });
       const tbody = table.tBodies[0];
       sorted.forEach(row => tbody.appendChild(row));
-      ascending = !ascending;
 
-      // Toggle arrow direction
-      document.getElementById("sortArrow").textContent = ascending ? "▲" : "▼";
+      if (toggle) {
+        ascending = !ascending;
+        document.getElementById("sortArrow").textContent = ascending ? "▲" : "▼";
+      }
     }
+
+    window.onload = () => {
+      sortTable(false); // Auto-sort on load ascending
+    };
   </script>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
